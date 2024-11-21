@@ -5,10 +5,13 @@ import { user } from './types/user';
 
 type tableProps = {
     users: user[];
-    onUserClick: (user: user) => void;
+    linha: (usuarioClicado : any) => void;
 };
 
-const Table: React.FC<tableProps> = ({users, onUserClick}) => {
+export function Table({users, linha}:{
+    users: user[];
+    linha: (usuarioClicado : any) => void;
+}){
     const [page, setPage] = useState<number>(0);
     const [numPerPage] = useState([3]);
     const [itemsPerPage, setItemsPerPage] = useState(numPerPage[0]);
@@ -30,7 +33,7 @@ const Table: React.FC<tableProps> = ({users, onUserClick}) => {
             </DataTable.Header>
 
             {users.map((t:user) => (
-                <DataTable.Row key={t._id} style={style.row} onPress={() => onUserClick(t)}>
+                <DataTable.Row key={t._id} style={style.row} onPress={() => linha(t)}>
                     <DataTable.Cell textStyle={style.cell}>{t._id}</DataTable.Cell>
                     <DataTable.Cell textStyle={style.cell}>{t.nome}</DataTable.Cell>
                     <DataTable.Cell textStyle={style.cell}>{t.senha}</DataTable.Cell>

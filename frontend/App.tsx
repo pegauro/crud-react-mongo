@@ -4,7 +4,7 @@ import { Text, TextInput, View } from 'react-native';
 import { RadioButton } from 'react-native-paper';
 import Button from './Button';
 import ImageViewer from './ImageViewer';
-import Table from './Table';
+import {Table} from './Table';
 import { styles } from './styles/style';
 import AddUser from './components/AddUser';
 import DeleteUser from './components/DeleteUser';
@@ -17,7 +17,7 @@ const dirImagem = require('./assets/imagens/tcc-logo-quadrado.jpeg');
 export default function App() {
   let [users, setUsers] = useState<user[] | undefined | null | [] | any>([]);
 
-  let [user, setUser] = useState<user>();
+  let [user, setUser] = useState<user | null | undefined>();
 
   const mostraUsuarios = () => {
     ShowUsers().then(data => {
@@ -25,10 +25,10 @@ export default function App() {
     });
   };
 
-  const guardaClicado = (user:user) => {
-    setUser(user);
+  const linhaClicada = (usuarioClicado : any) =>{
+    setUser(usuarioClicado)
   };
-
+  
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -59,16 +59,16 @@ export default function App() {
           </View>
         </View>
         <View style={styles.button}>
-          <Button label="Cadastrar" onClick={() => { AddUser({ user }); }} />
+          <Button label="Cadastrar" onClick={() => { AddUser({ user });}} />
           <Button label="Ver Todos" onClick={ mostraUsuarios } />
-          <Button label="Alterar" onClick={() => { UpdateUser({ user }); }} />
-          <Button label="Apagar" onClick={() => { DeleteUser({ user }); }} />
+          <Button label="Alterar" onClick={() => { UpdateUser(user);}} />
+          <Button label="Apagar" onClick={() => { DeleteUser(user);}} />
         </View>
       </View>
       <View style={{ width: '100%', height: '35%', marginTop: 10, marginLeft: 18 }}>
         <Text style={{ marginTop: 15 }}>Dados Cadastrados</Text>
         <View style={{ width: '90%', height: '100%', borderWidth: 2, borderColor: '#F3C63B', borderRadius: 10 }}>
-          <Table users={users} />
+          <Table users={users} linha={linhaClicada}/>
         </View>
       </View>
       <StatusBar style="auto" />

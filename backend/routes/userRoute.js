@@ -24,7 +24,7 @@ router.put("/:id", (req,res) => {
 })
 
 router.delete("/:id", (req, res) => {
-    usuario.findByIdAndDelete()
+    usuario.findByIdAndDelete(req.params.id)
     .then(user => res.json({msg: "usuario deleteado com sucesso"}))
     .catch(e => res.status(404).json({error: "Nenhum usuario com esse id"}))
 })
