@@ -12,11 +12,11 @@
     "@expo/metro-runtime": "~3.2.1",
     "@expo/vector-icons": "^14.0.0",
     "axios": "^1.6.8",
-    "expo": "^51.0.8",
+    "expo": "^55.0.9",
     "expo-status-bar": "~1.12.1",
     "react": "^18.2.0",
     "react-dom": "18.2.0",
-    "react-native": "0.74.1",
+    "react-native": "^0.84.1",
     "react-native-paper": "^5.12.3",
     "react-native-web": "~0.19.6"
   },
